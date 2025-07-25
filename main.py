@@ -1,9 +1,13 @@
-user_str = input("Введите числа через пробел: ").split()
-int_list = list(map(lambda i: int(i), user_str))
-int_positive = list(filter(lambda i: i>0, int_list))
-print(f"Положительные числа: {int_positive}")
-min_val, max_val, avg = min(int_positive), max(int_positive), sum(int_positive)/len(int_positive)
-print(f"Минимальное: {min_val}")
-print(f"Максимальное: {max_val}")
-print(f"Среднее: {avg}")
-print("Отрицательные значения: ", list(filter(lambda i: i<0, int_list)))
+#Напиши генераторную функцию even_squares(n),
+# которая генерирует квадраты только чётных чисел от 1 до n включительно.
+
+def vowel_filter(n):
+    vowels="аеёиоуыэюяaeiou"
+    for i in n:
+        if i.lower() in vowels:
+            yield i
+
+vowels = vowel_filter("ПрИвЕт, Hello!")
+
+for i in vowels:
+    print (i)
