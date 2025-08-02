@@ -60,3 +60,30 @@ def l(result):
     print(result)
 
 l()
+
+user_input = input("Ввод строки для работы функции: ").split(",")
+
+def processor(user_input):
+    n_str = user_input[0]
+    n = list(map(int, n_str.split(" ")))
+    flags = user_input[1:]
+    kwargs ={}
+    for flag in flags:
+        key, value = flag.strip().split("=")
+        kwargs[key] = value == "True"
+    def decorator(func):
+        def wrapper():
+            result = n
+            if kwargs.get("even"):
+                result = [i for i  in result if i % 2 == 0]
+            if kwargs.get("square"):
+                result = [i**2 for i in result]
+            if kwargs.get("unique"):
+                result = list(set(result))
+            func(result)
+        return wrapper
+    return decorator
+
+@processor(user_input)
+def p(result):
+    print(result)
